@@ -111,7 +111,7 @@ public class ProductController {
 
     @GetMapping("/help")
     public ResponseEntity<Object> help(){
-        return new ResponseEntity<>(getMp("No help lmao"), HttpStatus.OK);
+        return new ResponseEntity<>(getMp("No route"), HttpStatus.NOT_IMPLEMENTED);
     }
 
 }
