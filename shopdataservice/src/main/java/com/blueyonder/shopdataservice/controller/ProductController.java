@@ -109,4 +109,9 @@ public class ProductController {
         return new ResponseEntity<>(jsonObject, HttpStatus.OK);
     }
 
+    @GetMapping("/help")
+    public ResponseEntity<Object> help(){
+        return new ResponseEntity<>(getMp("No help lmao"), HttpStatus.OK);
+    }
+
 }

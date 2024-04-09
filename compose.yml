@@ -20,9 +20,9 @@ services:
       networks:
         - ecappNet
       
-    shopdata-service:
-      container_name: shopdataservice
-      image: shopdataservice:latest
+    shopdata-jenkins:
+      container_name: shopdata-jenkins
+      image: shopdata-jenkins:v1
       ports:
         - 8091:8091
       networks:
