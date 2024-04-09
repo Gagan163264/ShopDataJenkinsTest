@@ -1,8 +1,6 @@
 FROM openjdk:21
 WORKDIR /service
-CMD ["./gradlew", "clean"]
-CMD ["./gradlew", "bootJar"]
 COPY ./build/libs/*.jar /app.jar
-EXPOSE 8090
+EXPOSE 8091
 CMD ["ls","./"]
 ENTRYPOINT ["java","-jar", "/app.jar"]

@@ -5,7 +5,7 @@ spring:
     name: shopdata-service
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/ecapp
+    url: jdbc:postgresql://postgres:5432/ecapp
     username: postgres
     password: postgres
   jpa:
