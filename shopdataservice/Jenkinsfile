@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+    environment { 
+        NAME = "shopdata-jenkins"
+        VERSION = "${env.BUILD_ID}-${env.GIT_COMMIT}"
+        IMAGE = "${NAME}:${VERSION}"
+    }
+    stages {
+        stage('Build') {
+            dir ('shopdataservice') {
+                steps {
+                    echo "Running ${VERSION} on ${env.JENKINS_URL}"
+                    bat './gradlew clean bootJar'
+                    bat 'docker build -t ${IMAGE} .'
+                    bat 'docker tag ${NAME}:latest ${NAME}:${VERSION}'
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'NO tests defined'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'No deployment defined'
+            }
+        }
+    }
+}
