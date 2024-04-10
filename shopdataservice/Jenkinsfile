@@ -5,6 +5,7 @@ pipeline {
         VERSION = "${env.BUILD_ID}-${env.GIT_COMMIT}"
         IMAGE = "${NAME}:${VERSION}"
         DOCKERHUB_CREDS = credentials('99e768b8-3323-4614-9671-0ad00c63c7ea')
+        DOC
     }
     stages {
         stage('Build') {
@@ -14,7 +15,8 @@ pipeline {
                     bat "./gradlew clean bootJar"
                     echo "Building Docker image ${IMAGE}"
                     bat "docker build -t ${IMAGE} ."
-                    bat "docker tag ${NAME}:latest ${NAME}:${VERSION}"
+                    bat "docker tag ${IMAGE} ${DOCKERHUB_USR}:${IMAGE}"
+                    bat "docker push ${DOCKERHUB_USR}:${IMAGE}"
                 }
             }
         }
