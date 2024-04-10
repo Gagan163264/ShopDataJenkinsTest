@@ -4,6 +4,9 @@ pipeline {
         NAME = "shopdata-jenkins"
         VERSION = "${env.BUILD_ID}-${env.GIT_COMMIT}"
         IMAGE = "${NAME}:${VERSION}"
+        DOCKERHUB_CREDS = credentials('dockerhub')
+        REGISTRY_UNAME = DOCKERHUB_CREDS_USR
+        REGISTRY_PWD = DOCKERHUB_CREDS_PSW
     }
     stages {
         stage('Build') {
@@ -24,7 +27,8 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'No deployment defined'
+                echo "Pushing Docker image ${IMAGE} to DockerHub"
+                echo "${REGISTRY_PWD} ${REGISTRY_UNAME}"
             }
         }
     }
