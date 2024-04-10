@@ -11,6 +11,7 @@ pipeline {
                 dir("shopdataservice") {
                     echo "Running ${VERSION} on ${env.JENKINS_URL}"
                     bat './gradlew clean bootJar'
+                    echo "Building Docker image ${IMAGE}"
                     bat 'docker build -t ${IMAGE} .'
                     bat 'docker tag ${NAME}:latest ${NAME}:${VERSION}'
                 }
