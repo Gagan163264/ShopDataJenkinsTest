@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment { 
-        NAME = "shopdata-jenkins"
+        NAME = "shopdatajenkins"
         VERSION = "${env.BUILD_ID}-${env.GIT_COMMIT}"
         IMAGE = "${NAME}:${VERSION}"
         DOCKERHUB_CREDS = credentials('99e768b8-3323-4614-9671-0ad00c63c7ea')
