@@ -7,8 +7,8 @@ pipeline {
     }
     stages {
         stage('Build') {
-            dir ('shopdataservice') {
-                steps {
+            steps {
+                dir("shopdataservice") {
                     echo "Running ${VERSION} on ${env.JENKINS_URL}"
                     bat './gradlew clean bootJar'
                     bat 'docker build -t ${IMAGE} .'
