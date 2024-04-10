@@ -22,7 +22,7 @@ services:
       
     shopdata-jenkins:
       container_name: shopdata-jenkins
-      image: gagan163264/shopdatajenkins:19-ae6cc9f41adb0b5097f7a480ae365a40b0fa3657
+      image: gagan163264/shopdatajenkins:latest
       ports:
         - 8091:8091
       networks:
