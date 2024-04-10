@@ -4,7 +4,7 @@ pipeline {
         NAME = "shopdata-jenkins"
         VERSION = "${env.BUILD_ID}-${env.GIT_COMMIT}"
         IMAGE = "${NAME}:${VERSION}"
-        DOCKERHUB_CREDS = credentials('dockerhub')
+        DOCKERHUB_CREDS = credentials('gagan163264')
     }
     stages {
         stage('Build') {
