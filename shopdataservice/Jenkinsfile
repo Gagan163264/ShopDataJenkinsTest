@@ -15,7 +15,7 @@ pipeline {
                     echo "Building Docker image ${IMAGE}"
                     bat "docker build -t ${IMAGE} ."
                     bat "docker tag ${IMAGE} ${DOCKERHUB_CREDS_USR}/${IMAGE}"
-                    bat "docker push ${DOCKERHUB_USR}/${IMAGE}"
+                    bat "docker push ${DOCKERHUB_CREDS_USR}/${IMAGE}"
                 }
             }
         }
