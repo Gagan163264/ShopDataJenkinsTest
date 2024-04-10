@@ -13,7 +13,7 @@ pipeline {
                     echo "Running ${VERSION} on ${env.JENKINS_URL}"
                     bat "./gradlew clean bootJar"
                     echo "Building Docker image ${IMAGE}"
-                    bat "docker build -t  ${DOCKERHUB_CREDS_USR}/${IMAGE} -t ${IMAGE}:latest ."
+                    bat "docker build -t ${DOCKERHUB_CREDS_USR}/${IMAGE} -t ${DOCKERHUB_CREDS_USR}/${NAME}:latest ."
                 }
             }
         }
