@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment { 
         NAME = "shopdatajenkins"
-        VERSION = "${env.BUILD_ID}-${env.GIT_COMMIT}"
+        VERSION = "${env.BUILD_ID}-${env.BUILD_NUMBER}"
         IMAGE = "${NAME}:${VERSION}"
         DOCKERHUB_CREDS = credentials('99e768b8-3323-4614-9671-0ad00c63c7ea')
     }
@@ -13,7 +13,7 @@ pipeline {
                     echo "Running ${VERSION} on ${env.JENKINS_URL}"
                     bat "./gradlew clean bootJar"
                     echo "Building Docker image ${IMAGE}"
-                    bat "docker build -t ${IMAGE} ."
+                    bat "docker build -t  ${DOCKERHUB_CREDS_USR}/${IMAGE} -t ${IMAGE}:latest."
                 }
             }
         }
@@ -26,8 +26,9 @@ pipeline {
             steps {
                 echo "Pushing Docker image ${IMAGE} to DockerHub"
                 bat "docker login -u ${DOCKERHUB_CREDS_USR} -p ${DOCKERHUB_CREDS_PSW}"
-                bat "docker tag ${IMAGE} ${DOCKERHUB_CREDS_USR}/${IMAGE}"
-                bat "docker push ${DOCKERHUB_CREDS_USR}/${IMAGE}"
+                bat "docker push ${DOCKERHUB_CREDS_USR}/${IMAGE} --all-tags"
+                bat "docker rmi ${DOCKERHUB_CREDS_USR}/${IMAGE} ${IMAGE}:latest"
+                bat "docker logout"
             }
         }
     }
