@@ -26,7 +26,7 @@ pipeline {
             steps {
                 echo "Pushing Docker image ${IMAGE} to DockerHub"
                 bat "docker login -u ${DOCKERHUB_CREDS_USR} -p ${DOCKERHUB_CREDS_PSW}"
-                bat "docker tag ${IMAGE} ${DOCKERHUB_CREDS_USR}/${IMAGE}"
+                bat "docker tag ${IMAGE} ${DOCKERHUB_CREDS_USR}/${IMAGE} ${DOCKERHUB_CREDS_USR}/${NAME}:latest"
                 bat "docker push ${DOCKERHUB_CREDS_USR}/${IMAGE}"
             }
         }
